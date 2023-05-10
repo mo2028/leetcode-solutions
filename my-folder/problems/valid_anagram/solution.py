@@ -2,16 +2,18 @@ class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
         if len(s) != len(t):
             return False
-        sCount = {}
-        tCount = {}
         
-        for i in range(len(s)):
-            sCount[s[i]]  = sCount.get(s[i], 0) + 1
-            tCount[t[i]]  = tCount.get(t[i], 0) + 1
-            
+        my_dict = {}
+        anagram_dict = {}
         
-        for char in s:
-            if sCount[char] != tCount.get(char, 0):
+        for alpha in s:
+            my_dict[alpha] = my_dict.get(alpha, 0) + 1
+
+        for alpha in t:
+            anagram_dict[alpha] = anagram_dict.get(alpha, 0) + 1
+
+        for alpha in t:
+            if anagram_dict.get(alpha, 0) != my_dict.get(alpha, 0):
                 return False
-            
+        
         return True
