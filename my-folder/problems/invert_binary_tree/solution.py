@@ -5,15 +5,23 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def invertTree(self, root: TreeNode) -> TreeNode:
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         if not root:
             return None
-        else:
-            temp = root.left
-            root.left = root.right
-            root.right = temp
-            
-            self.invertTree(root.left)
-            self.invertTree(root.right)
         
+        # swap the children
+        temp = root.left
+        root.left = root.right
+        root.right =  temp
+        
+        # make 2 recursive calls
+        self.invertTree(root.left)
+        self.invertTree(root.right)
         return root
+
+        
+
+
+        
+
+        
