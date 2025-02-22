@@ -1,15 +1,13 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        
-        prevDiffMap = {}
-
-        # diff -> index
-        for i, n in enumerate(nums):
-
-            diff = target - n  
-            if diff in prevDiffMap:
-                return [prevDiffMap[diff], i]
-            prevDiffMap[n] = i
+        otherValueMap = {}
+        for i in range(len(nums)):
+            otherValue = target - nums[i]
+            if otherValue in otherValueMap:
+                return [otherValueMap[otherValue], i]
+            otherValueMap[nums[i]] = i
+        print(otherValueMap)
+        return []
 
 
 
