@@ -6,7 +6,7 @@ class Solution:
         # forgot the main l<r loop that drives the whole thing
         while l < r:
             # 4. while loops to forward or backwads the pointer if not alphanumeric
-            # forgot the self.isAlphanumeric and the l < r
+            # forgot the self.isAlphanumeric and the l < r, which is required to be checked again
             while l < r and not self.isAlphaNumeric(s[l]):
                 l += 1
             while l < r and not self.isAlphaNumeric(s[r]):
@@ -33,6 +33,7 @@ class Solution:
     # 1. first  write a function to check if a character is alpha numeric
     # had this indented inside the isPalindrome function, which is wrong becuase it is a class method of Solution. 
     def isAlphaNumeric(self, c):
+        # the order matters here
         return (ord("A") <= ord(c) <= ord("Z") or 
                 ord("a") <= ord(c) <= ord("z") or
                 ord("0") <= ord(c) <= ord("9"))
