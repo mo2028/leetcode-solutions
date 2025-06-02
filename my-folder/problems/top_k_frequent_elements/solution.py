@@ -1,36 +1,19 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        # will solve this using bucket sort
-        # index of the freq list is the number of times that number in the list appears
-        freq = [[] for i in range(len(nums)+1)]
-        # get the count of all the numbers to be out in the freq buckets
-        countMap = {}
-        for i in range(len(nums)):
-            countMap[nums[i]] = countMap.get(nums[i], 0) + 1
-        print(countMap)
-        
-        # put it into the buckets, where the index is the count
-        for number, count in countMap.items():
-            # print(number, count)
-            freq[count].append(number)
-                
+        countMap  = {}
+        for n in nums:
+            countMap[n] = countMap.get(n, 0)+1
 
-        res = []
-        # print(freq)
-        # go from the back and return k elements
-        for i in range(len(nums), 0, -1):
-            for j in freq[i]:
-                res.append(j)
-                if len(res) == k:
-                    return res
+        freq_list = list(countMap.items())
+        freq_list.sort(key=lambda x: x[1], reverse=True)
+        print(freq_list)
+
+        freq = []
+        for i in range(k):
+            freq.append(freq_list[i][0])
+        return freq
 
 
-
-
-
-
-
-        
 
 
         
