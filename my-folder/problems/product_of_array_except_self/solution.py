@@ -1,23 +1,33 @@
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
-        # init result array "res"
-        res = [1]*len(nums)
+        left = [1]*len(nums)
+        right = [1]*len(nums)
 
-        prefix = 1
-        # foward pass but itself
-        for i in range(0, len(nums)):
-            res[i] = prefix
-            prefix = prefix * nums[i]
+        product = 1
+        # [1, 1, 2, 6]
+        for i in range(1, len(nums)):
+            left[i] = product * nums[i-1]
+            product = left[i]
+        print(left)
 
-        postfix = 1
-        #backward pass by itself
-        # I had "for i in range(len(nums)-1, -1):"", which does not have the third argument 
-        # so it was a inifnite loop. need to put -1 to be able to go backwards 
-        for i in range(len(nums)-1, -1, -1):
-            # here, I had res[i]= postfix, this is wrong because it is most making use of the 
-            # result that is already in the res array, and it is overwriting 
-            res[i]= res[i] * postfix
-            postfix = postfix * nums[i]
-            
+        # [24, 12, 4, 1]
+        product = 1
+        for i in range(len(nums)-2, -1, -1):
+            right[i] = product * nums[i+1]
+            product = right[i]
+        
+        result = [1]*len(nums)
+        for i in range(len(nums)):
+            result[i] =  left[i] * right[i]
+        
+        return result
 
-        return res
+
+
+
+        
+
+
+
+
+        
